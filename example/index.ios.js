@@ -22,7 +22,7 @@ var MoviesApp = Controllers.createClass({
 
   render: function() {
     return (
-      <DrawerControllerIOS id="drawer" componentLeft="SideMenu" componentRight="SideMenu">
+      <DrawerControllerIOS id="drawer" componentLeft="SideMenu" componentRight="SideMenu" drawerType="airbnb">
         <TabBarControllerIOS id="main">
           <TabBarControllerIOS.Item title="Movies" icon={require('./img/home.png')} selectedIcon={require('./img/home_selected.png')}>
             <NavigationControllerIOS

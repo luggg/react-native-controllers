@@ -7,6 +7,8 @@
 #import "RCCLightBox.h"
 #import "RCTConvert.h"
 #import "RCCTabBarController.h"
+#import "DrawerTheSideBarManagerViewController.h"
+
 
 typedef NS_ENUM(NSInteger, RCCManagerModuleErrorCode)
 {
@@ -118,8 +120,8 @@ RCT_EXPORT_METHOD(
 DrawerControllerIOS:(NSString*)controllerId performAction:(NSString*)performAction actionParams:(NSDictionary*)actionParams)
 {
   if (!controllerId || !performAction) return;
-  RCCDrawerController* controller = [[RCCManager sharedIntance] getControllerWithId:controllerId componentType:@"DrawerControllerIOS"];
-  if (!controller || ![controller isKindOfClass:[RCCDrawerController class]]) return;
+  id<RCCDrawerDelegate> controller = [[RCCManager sharedIntance] getControllerWithId:controllerId componentType:@"DrawerControllerIOS"];
+  if (!controller || (![controller isKindOfClass:[RCCDrawerController class]] && ![controller isKindOfClass:[DrawerTheSideBarManagerViewController class]])) return;
   return [controller performAction:performAction actionParams:actionParams bridge:[[RCCManager sharedIntance] getBridge]];
 }
 

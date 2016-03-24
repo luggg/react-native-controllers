@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		266B2F2A1CA126C000E2E885 /* SidebarAirbnbAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 266B2F1B1CA126C000E2E885 /* SidebarAirbnbAnimation.m */; };
+		266B2F2B1CA126C000E2E885 /* SidebarAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 266B2F1D1CA126C000E2E885 /* SidebarAnimation.m */; };
+		266B2F2C1CA126C000E2E885 /* SidebarFacebookAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 266B2F1F1CA126C000E2E885 /* SidebarFacebookAnimation.m */; };
+		266B2F2D1CA126C000E2E885 /* SidebarFeedlyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 266B2F211CA126C000E2E885 /* SidebarFeedlyAnimation.m */; };
+		266B2F2E1CA126C000E2E885 /* SidebarFlipboardAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 266B2F231CA126C000E2E885 /* SidebarFlipboardAnimation.m */; };
+		266B2F2F1CA126C000E2E885 /* SidebarLuvocracyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 266B2F251CA126C000E2E885 /* SidebarLuvocracyAnimation.m */; };
+		266B2F301CA126C000E2E885 /* SidebarWunderlistAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 266B2F271CA126C000E2E885 /* SidebarWunderlistAnimation.m */; };
+		266B2F311CA126C000E2E885 /* TheSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266B2F291CA126C000E2E885 /* TheSidebarController.m */; };
+		266B2F371CA1288C00E2E885 /* DrawerTheSideBarManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266B2F361CA1288C00E2E885 /* DrawerTheSideBarManagerViewController.m */; };
 		CC84A19D1C1A0C4E00B3A6A2 /* RCCDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC84A1921C1A0C4E00B3A6A2 /* RCCDrawerController.m */; };
 		CC84A19E1C1A0C4E00B3A6A2 /* RCCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CC84A1941C1A0C4E00B3A6A2 /* RCCManager.m */; };
 		CC84A19F1C1A0C4E00B3A6A2 /* RCCManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = CC84A1961C1A0C4E00B3A6A2 /* RCCManagerModule.m */; };
@@ -34,6 +43,25 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		260A8E0D1CA2F76000479E4A /* RCCDrawerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCCDrawerProtocol.h; sourceTree = "<group>"; };
+		266B2F1A1CA126C000E2E885 /* SidebarAirbnbAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarAirbnbAnimation.h; sourceTree = "<group>"; };
+		266B2F1B1CA126C000E2E885 /* SidebarAirbnbAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarAirbnbAnimation.m; sourceTree = "<group>"; };
+		266B2F1C1CA126C000E2E885 /* SidebarAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarAnimation.h; sourceTree = "<group>"; };
+		266B2F1D1CA126C000E2E885 /* SidebarAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarAnimation.m; sourceTree = "<group>"; };
+		266B2F1E1CA126C000E2E885 /* SidebarFacebookAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarFacebookAnimation.h; sourceTree = "<group>"; };
+		266B2F1F1CA126C000E2E885 /* SidebarFacebookAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarFacebookAnimation.m; sourceTree = "<group>"; };
+		266B2F201CA126C000E2E885 /* SidebarFeedlyAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarFeedlyAnimation.h; sourceTree = "<group>"; };
+		266B2F211CA126C000E2E885 /* SidebarFeedlyAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarFeedlyAnimation.m; sourceTree = "<group>"; };
+		266B2F221CA126C000E2E885 /* SidebarFlipboardAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarFlipboardAnimation.h; sourceTree = "<group>"; };
+		266B2F231CA126C000E2E885 /* SidebarFlipboardAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarFlipboardAnimation.m; sourceTree = "<group>"; };
+		266B2F241CA126C000E2E885 /* SidebarLuvocracyAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarLuvocracyAnimation.h; sourceTree = "<group>"; };
+		266B2F251CA126C000E2E885 /* SidebarLuvocracyAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarLuvocracyAnimation.m; sourceTree = "<group>"; };
+		266B2F261CA126C000E2E885 /* SidebarWunderlistAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarWunderlistAnimation.h; sourceTree = "<group>"; };
+		266B2F271CA126C000E2E885 /* SidebarWunderlistAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarWunderlistAnimation.m; sourceTree = "<group>"; };
+		266B2F281CA126C000E2E885 /* TheSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheSidebarController.h; sourceTree = "<group>"; };
+		266B2F291CA126C000E2E885 /* TheSidebarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheSidebarController.m; sourceTree = "<group>"; };
+		266B2F351CA1288C00E2E885 /* DrawerTheSideBarManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerTheSideBarManagerViewController.h; sourceTree = "<group>"; };
+		266B2F361CA1288C00E2E885 /* DrawerTheSideBarManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerTheSideBarManagerViewController.m; sourceTree = "<group>"; };
 		CC84A1911C1A0C4E00B3A6A2 /* RCCDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCCDrawerController.h; sourceTree = "<group>"; };
 		CC84A1921C1A0C4E00B3A6A2 /* RCCDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = RCCDrawerController.m; sourceTree = "<group>"; tabWidth = 2; };
 		CC84A1931C1A0C4E00B3A6A2 /* RCCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCCManager.h; sourceTree = "<group>"; };
@@ -73,6 +101,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		266B2F181CA126C000E2E885 /* TheSidebarController */ = {
+			isa = PBXGroup;
+			children = (
+				266B2F191CA126C000E2E885 /* Animations */,
+				266B2F281CA126C000E2E885 /* TheSidebarController.h */,
+				266B2F291CA126C000E2E885 /* TheSidebarController.m */,
+			);
+			path = TheSidebarController;
+			sourceTree = "<group>";
+		};
+		266B2F191CA126C000E2E885 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				266B2F1A1CA126C000E2E885 /* SidebarAirbnbAnimation.h */,
+				266B2F1B1CA126C000E2E885 /* SidebarAirbnbAnimation.m */,
+				266B2F1C1CA126C000E2E885 /* SidebarAnimation.h */,
+				266B2F1D1CA126C000E2E885 /* SidebarAnimation.m */,
+				266B2F1E1CA126C000E2E885 /* SidebarFacebookAnimation.h */,
+				266B2F1F1CA126C000E2E885 /* SidebarFacebookAnimation.m */,
+				266B2F201CA126C000E2E885 /* SidebarFeedlyAnimation.h */,
+				266B2F211CA126C000E2E885 /* SidebarFeedlyAnimation.m */,
+				266B2F221CA126C000E2E885 /* SidebarFlipboardAnimation.h */,
+				266B2F231CA126C000E2E885 /* SidebarFlipboardAnimation.m */,
+				266B2F241CA126C000E2E885 /* SidebarLuvocracyAnimation.h */,
+				266B2F251CA126C000E2E885 /* SidebarLuvocracyAnimation.m */,
+				266B2F261CA126C000E2E885 /* SidebarWunderlistAnimation.h */,
+				266B2F271CA126C000E2E885 /* SidebarWunderlistAnimation.m */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		CC84A1C61C1A101100B3A6A2 /* MMDrawerController */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +153,10 @@
 		D8AFADB41BEE6F3F00A4592D = {
 			isa = PBXGroup;
 			children = (
+				260A8E0D1CA2F76000479E4A /* RCCDrawerProtocol.h */,
+				266B2F351CA1288C00E2E885 /* DrawerTheSideBarManagerViewController.h */,
+				266B2F361CA1288C00E2E885 /* DrawerTheSideBarManagerViewController.m */,
+				266B2F181CA126C000E2E885 /* TheSidebarController */,
 				CC84A1C61C1A101100B3A6A2 /* MMDrawerController */,
 				CC84A1911C1A0C4E00B3A6A2 /* RCCDrawerController.h */,
 				CC84A1921C1A0C4E00B3A6A2 /* RCCDrawerController.m */,
@@ -179,16 +242,25 @@
 			files = (
 				CC84A1D61C1A103200B3A6A2 /* UIViewController+MMDrawerController.m in Sources */,
 				CC84A1A01C1A0C4E00B3A6A2 /* RCCNavigationController.m in Sources */,
+				266B2F301CA126C000E2E885 /* SidebarWunderlistAnimation.m in Sources */,
 				CC84A19F1C1A0C4E00B3A6A2 /* RCCManagerModule.m in Sources */,
+				266B2F2F1CA126C000E2E885 /* SidebarLuvocracyAnimation.m in Sources */,
 				CC84A1D31C1A103200B3A6A2 /* MMDrawerController.m in Sources */,
 				CC84A1D41C1A103200B3A6A2 /* MMDrawerVisualState.m in Sources */,
 				D84813191C8C5EB700051BAF /* RCCLightBox.m in Sources */,
 				CC84A19E1C1A0C4E00B3A6A2 /* RCCManager.m in Sources */,
 				CC84A1A11C1A0C4E00B3A6A2 /* RCCTabBarController.m in Sources */,
+				266B2F2C1CA126C000E2E885 /* SidebarFacebookAnimation.m in Sources */,
 				CC84A19D1C1A0C4E00B3A6A2 /* RCCDrawerController.m in Sources */,
 				CC84A1A21C1A0C4E00B3A6A2 /* RCCViewController.m in Sources */,
+				266B2F371CA1288C00E2E885 /* DrawerTheSideBarManagerViewController.m in Sources */,
+				266B2F2A1CA126C000E2E885 /* SidebarAirbnbAnimation.m in Sources */,
+				266B2F2E1CA126C000E2E885 /* SidebarFlipboardAnimation.m in Sources */,
+				266B2F311CA126C000E2E885 /* TheSidebarController.m in Sources */,
+				266B2F2D1CA126C000E2E885 /* SidebarFeedlyAnimation.m in Sources */,
 				CC84A1D21C1A103200B3A6A2 /* MMDrawerBarButtonItem.m in Sources */,
 				CC84A1D51C1A103200B3A6A2 /* MMExampleDrawerVisualStateManager.m in Sources */,
+				266B2F2B1CA126C000E2E885 /* SidebarAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

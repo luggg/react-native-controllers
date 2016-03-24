@@ -2,6 +2,7 @@
 #import "RCCNavigationController.h"
 #import "RCCTabBarController.h"
 #import "RCCDrawerController.h"
+#import "DrawerTheSideBarManagerViewController.h"
 #import "RCTRootView.h"
 #import "RCCManager.h"
 #import "RCTConvert.h"
@@ -58,7 +59,20 @@ const NSInteger BLUR_NAVBAR_TAG = 78264802;
   // side menu controller
   if ([type isEqualToString:@"DrawerControllerIOS"])
   {
-    controller = [[RCCDrawerController alloc] initWithProps:props children:children bridge:bridge];
+    NSString *drawerType = props[@"drawerType"];
+    
+    if ([drawerType isEqualToString:@"airbnb"] ||
+        [drawerType isEqualToString:@"facebook"] ||
+        [drawerType isEqualToString:@"luvocracy"] ||
+        [drawerType isEqualToString:@"feedly"] ||
+        [drawerType isEqualToString:@"flipboard"] ||
+        [drawerType isEqualToString:@"wunderlist"]) {
+      
+      controller = [[DrawerTheSideBarManagerViewController alloc] initWithProps:props children:children bridge:bridge];
+    }
+    else {
+      controller = [[RCCDrawerController alloc] initWithProps:props children:children bridge:bridge];
+    }
   }
 
   // register the controller if we have an id

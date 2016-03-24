@@ -30,7 +30,14 @@ var MovieListScreen = React.createClass({
     Controllers.NavigationControllerIOS("movies_nav").setLeftButtons([{
       title: "Burger",
       onPress: function() {
-        Controllers.DrawerControllerIOS("drawer").toggle();
+        Controllers.DrawerControllerIOS("drawer").toggleLeft({side:"left"});
+      }
+    }]);
+
+    Controllers.NavigationControllerIOS("movies_nav").setRightButtons([{
+      title: "MegaBurger",
+      onPress: function() {
+        Controllers.DrawerControllerIOS("drawer").toggleRight({side:"right"});
       }
     }]);
   },
@@ -77,7 +84,7 @@ var MovieListScreen = React.createClass({
           There's a right and a left side menu in this example. Control the side menu animation using the options below:
         </Text>
 
-        <TouchableOpacity onPress={ this.onButtonClick.bind(this, "door") }>
+        <TouchableOpacity onPress={ this.onButtonClick.bind(this, "door") } >
           <Text style={styles.button}>Door</Text>
         </TouchableOpacity>
 
@@ -89,9 +96,35 @@ var MovieListScreen = React.createClass({
           <Text style={styles.button}>Slide</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={ this.onButtonClick.bind(this, "slideAndScale") }>
+        <TouchableOpacity onPress={ this.onButtonClick.bind(this, "slideAndScale") } >
           <Text style={styles.button}>Slide & Scale</Text>
         </TouchableOpacity>
+
+        <View style={styles.lineView}/>
+
+          <TouchableOpacity onPress={ this.onButtonClick.bind(this, "airbnb") } >
+              <Text style={styles.button}>Airbnb</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={ this.onButtonClick.bind(this, "facebook") } >
+              <Text style={styles.button}>Facebook</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={ this.onButtonClick.bind(this, "luvocracy") } >
+              <Text style={styles.button}>Luvocracy</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={ this.onButtonClick.bind(this, "feedly") } >
+              <Text style={styles.button}>Feedly</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={ this.onButtonClick.bind(this, "flipboard") } >
+              <Text style={styles.button}>Flipboard</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={ this.onButtonClick.bind(this, "wunderlist") } >
+              <Text style={styles.button}>Wunder List</Text>
+          </TouchableOpacity>
 
         <Text style={{fontSize: 20, textAlign: 'center', margin: 10, fontWeight: '500', marginTop: 30}}>
           Modal Example
@@ -148,7 +181,15 @@ var styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 10,
     marginTop:10,
-    color: 'blue'
+    color:'blue'
+  },
+  lineView: {
+    height: 1,
+    marginTop: 4,
+    marginBottom: 4,
+    marginLeft: 8,
+    marginRight: 8,
+    backgroundColor:'gray'
   }
 });
 
