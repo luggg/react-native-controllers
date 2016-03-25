@@ -211,6 +211,15 @@
   return window;
 }
 
+-(void)setLoadingView:(UIView *)loadingView
+{
+  UIViewController *loadingController = [UIViewController new];
+  loadingController.view = loadingView;
+  id<UIApplicationDelegate> appDelegate = [UIApplication sharedApplication].delegate;
+  appDelegate.window.rootViewController = loadingController;
+  [appDelegate.window makeKeyAndVisible];
+}
+
 #pragma mark - RCTBridgeDelegate methods
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
