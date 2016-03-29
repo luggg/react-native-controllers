@@ -1,10 +1,14 @@
+#import "RCTRootView.h"
 #import "RCCNavigationController.h"
 #import "RCCViewController.h"
 #import "RCCManager.h"
 #import "RCTEventDispatcher.h"
 #import "RCTConvert.h"
 
-@implementation RCCNavigationController
+@implementation RCCNavigationController {
+  UIViewController *_controller;
+  BOOL _animated;
+}
 
 NSString const *CALLBACK_ASSOCIATED_KEY = @"RCCNavigationController.CALLBACK_ASSOCIATED_KEY";
 NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSOCIATED_ID";
@@ -120,7 +124,12 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
       [self setButtons:rightButtons viewController:viewController side:@"right" animated:NO];
     }
     
-    [self pushViewController:viewController animated:animated];
+    _controller = viewController;
+    _animated = animated;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(changeControllers)
+                                                 name:RCTContentDidAppearNotification
+                                               object:viewController.view];
     return;
   }
   
@@ -210,6 +219,14 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
     [topViewController setNavBarVisibilityChange:animatedBool];
     
     }
+}
+
+-(void)changeControllers
+{
+  if (_controller) {
+    [self pushViewController:_controller animated:_animated];
+    _controller = NULL;
+  }
 }
 
 -(void)onButtonPress:(UIBarButtonItem*)barButtonItem
