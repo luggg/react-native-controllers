@@ -1,3 +1,4 @@
+#import "RCTRootView.h"
 #import "RCCManagerModule.h"
 #import "RCCManager.h"
 #import <UIKit/UIKit.h>
@@ -23,7 +24,11 @@ RCT_ENUM_CONVERTER(RCCManagerModuleErrorCode,
                       }), RCCManagerModuleCantCreateControllerErrorCode, integerValue)
 @end
 
-@implementation RCCManagerModule
+@implementation RCCManagerModule {
+    BOOL _animated;
+    UIViewController *_controller;
+    RCTPromiseResolveBlock _resolve;
+}
 
 RCT_EXPORT_MODULE(RCCManager);
 
@@ -170,10 +175,29 @@ showController:(NSDictionary*)layout animationType:(NSString*)animationType reso
                                                 error:[RCCManagerModule rccErrorWithCode:RCCManagerModuleCantCreateControllerErrorCode description:@"could not create controller"]];
         return;
     }
+    
+    _animated = ![animationType isEqualToString:@"none"];
+    _controller = controller;
+    _resolve = resolve;
+    
+    //    [[RCCManagerModule modalPresenterViewController] presentViewController:_controller
+    //                                                                  animated:_animated
+    //                                                                completion:^(){ _resolve(nil); }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(changeControllers)
+                                                 name:RCTContentDidAppearNotification
+                                               object:NULL];
+}
 
-    [[RCCManagerModule modalPresenterViewController] presentViewController:controller
-                                                           animated:![animationType isEqualToString:@"none"]
-                                                         completion:^(){ resolve(nil); }];
+-(void) changeControllers
+{
+    if (_controller) {
+        [[RCCManagerModule modalPresenterViewController] presentViewController:_controller
+                                                                      animated:_animated
+                                                                    completion:^(){ _resolve(nil); }];
+        _controller = NULL;
+    }
 }
 
 RCT_EXPORT_METHOD(
