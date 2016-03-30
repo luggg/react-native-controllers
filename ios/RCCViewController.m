@@ -196,10 +196,28 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
     }
     
     NSString *navBarTextColor = self.navigatorStyle[@"navBarTextColor"];
-    if (navBarTextColor)
+    NSString *navBarTextFontFamily = self.navigatorStyle[@"navBarTextFontFamily"];
+    NSString *navBarTextFontSize = self.navigatorStyle[@"navBarTextFontSize"];
+    NSString *navBarTextFontWeight = self.navigatorStyle[@"navBarTextFontWeight"];
+    NSString *navBarTextFontStyle = self.navigatorStyle[@"navBarTextFontStyle"];
+    
+    NSMutableDictionary *titleTextAttributes = [NSMutableDictionary dictionary];
+    
+    UIColor *navBarTextConvertedColor = navBarTextColor != (id)[NSNull null] ? [RCTConvert UIColor:navBarTextColor] : nil;
+    [titleTextAttributes setValue:navBarTextConvertedColor forKey:NSForegroundColorAttributeName];
+    
+    UIFont *titleTextFont = [RCTConvert UIFont:nil
+                                    withFamily:navBarTextFontFamily
+                                          size:navBarTextFontSize
+                                        weight:navBarTextFontWeight
+                                         style:navBarTextFontStyle
+                               scaleMultiplier:1.0f];
+    
+    [titleTextAttributes setValue:titleTextFont forKey:NSFontAttributeName];
+    
+    if ([titleTextAttributes count] > 0)
     {
-        UIColor *color = navBarTextColor != (id)[NSNull null] ? [RCTConvert UIColor:navBarTextColor] : nil;
-        [viewController.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : color}];
+        [viewController.navigationController.navigationBar setTitleTextAttributes:titleTextAttributes];
     }
     else
     {
