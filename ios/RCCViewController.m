@@ -160,7 +160,7 @@ const NSInteger BLUR_NAVBAR_TAG = 78264802;
   
   NSString *navBarTextColor = self.navigatorStyle[@"navBarTextColor"];
   NSString *navBarTextFontFamily = self.navigatorStyle[@"navBarTextFontFamily"];
-  NSString *navBarTextFontSize = self.navigatorStyle[@"navBarTextFontSize"];
+  NSNumber *navBarTextFontSize = self.navigatorStyle[@"navBarTextFontSize"];
   NSString *navBarTextFontWeight = self.navigatorStyle[@"navBarTextFontWeight"];
   NSString *navBarTextFontStyle = self.navigatorStyle[@"navBarTextFontStyle"];
   
