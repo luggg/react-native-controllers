@@ -19,7 +19,7 @@ const NSInteger BLUR_NAVBAR_TAG = 78264802;
 
 @implementation RCCViewController
 
-+ (UIViewController*)controllerWithLayout:(NSDictionary *)layout bridge:(RCTBridge *)bridge
++ (UIViewController*)controllerWithLayout:(NSDictionary *)layout bridge:(RCTBridge *)bridge loadingView:(UIView *)loadingView
 {
   UIViewController* controller = nil;
   if (!layout) return nil;
@@ -47,7 +47,7 @@ const NSInteger BLUR_NAVBAR_TAG = 78264802;
   // navigation controller
   if ([type isEqualToString:@"NavigationControllerIOS"])
   {
-    controller = [[RCCNavigationController alloc] initWithProps:props children:children bridge:bridge];
+    controller = [[RCCNavigationController alloc] initWithProps:props children:children bridge:bridge loadingView:loadingView];
   }
 
   // tab bar controller
@@ -91,7 +91,7 @@ const NSInteger BLUR_NAVBAR_TAG = 78264802;
   return self;
 }
 
-- (instancetype)initWithComponent:(NSString *)component passProps:(NSDictionary *)passProps navigatorStyle:(NSDictionary*)navigatorStyle bridge:(RCTBridge *)bridge
+- (instancetype)initWithComponent:(NSString *)component passProps:(NSDictionary *)passProps navigatorStyle:(NSDictionary*)navigatorStyle bridge:(RCTBridge *)bridge loadingView:(UIView *)loadingView
 {
   RCTRootView *reactView = [[RCTRootView alloc] initWithBridge:bridge moduleName:component initialProperties:passProps];
   if (!reactView) return nil;
@@ -99,8 +99,12 @@ const NSInteger BLUR_NAVBAR_TAG = 78264802;
   self = [super init];
   if (!self) return nil;
 
-  [self commonInit:reactView navigatorStyle:navigatorStyle];
+  if (loadingView) {
+    [reactView setLoadingView:loadingView];
+  }
 
+  [self commonInit:reactView navigatorStyle:navigatorStyle];
+  
   return self;
 }
 
