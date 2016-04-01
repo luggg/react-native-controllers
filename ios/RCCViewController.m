@@ -33,7 +33,7 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
     return _navBarHairlineImageView;
 }
 
-+ (UIViewController*)controllerWithLayout:(NSDictionary *)layout globalProps:(NSDictionary *)globalProps bridge:(RCTBridge *)bridge
++ (UIViewController*)controllerWithLayout:(NSDictionary *)layout globalProps:(NSDictionary *)globalProps bridge:(RCTBridge *)bridge loadingView:(UIView *)loadingView
 {
     UIViewController* controller = nil;
     if (!layout) return nil;
@@ -61,7 +61,7 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
     // navigation controller
     if ([type isEqualToString:@"NavigationControllerIOS"])
     {
-        controller = [[RCCNavigationController alloc] initWithProps:props children:children globalProps:globalProps bridge:bridge];
+        controller = [[RCCNavigationController alloc] initWithProps:props children:children globalProps:globalProps bridge:bridge loadingView:loadingView];
     }
     
     // tab bar controller
@@ -112,11 +112,10 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
   if (!self) return nil;
 
   [self commonInit:reactView navigatorStyle:navigatorStyle props:props];
-
   return self;
 }
 
-- (instancetype)initWithComponent:(NSString *)component passProps:(NSDictionary *)passProps navigatorStyle:(NSDictionary*)navigatorStyle globalProps:(NSDictionary *)globalProps bridge:(RCTBridge *)bridge
+- (instancetype)initWithComponent:(NSString *)component passProps:(NSDictionary *)passProps navigatorStyle:(NSDictionary*)navigatorStyle globalProps:(NSDictionary *)globalProps bridge:(RCTBridge *)bridge loadingView:(UIView *)loadingView
 {
   NSMutableDictionary *mergedProps = [NSMutableDictionary dictionaryWithDictionary:globalProps];
   [mergedProps addEntriesFromDictionary:passProps];
@@ -127,8 +126,12 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
   self = [super init];
   if (!self) return nil;
 
-  [self commonInit:reactView navigatorStyle:navigatorStyle props:passProps];
+  if (loadingView) {
+    [reactView setLoadingView:loadingView];
+  }
 
+  [self commonInit:reactView navigatorStyle:navigatorStyle props:passProps];
+  
   return self;
 }
 

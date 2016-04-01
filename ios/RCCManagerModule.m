@@ -205,8 +205,10 @@ setRootController:(NSDictionary*)layout animationType:(NSString*)animationType g
     // first clear the registry to remove any refernece to the previous controllers
     [[RCCManager sharedInstance] clearModuleRegistry];
     
+    RCCManager *manager = [RCCManager sharedIntance];
     // create the new controller
-    UIViewController *controller = [RCCViewController controllerWithLayout:layout globalProps:globalProps bridge:[[RCCManager sharedInstance] getBridge]];
+    UIViewController *controller = [RCCViewController controllerWithLayout:layout globalProps:globalProps bridge:[manager getBridge] loadingView:[manager getLoadingView]];
+
     if (controller == nil) return;
     
     id<UIApplicationDelegate> appDelegate = [UIApplication sharedApplication].delegate;
@@ -298,7 +300,7 @@ modalDismissLightBox)
 RCT_EXPORT_METHOD(
 showController:(NSDictionary*)layout animationType:(NSString*)animationType globalProps:(NSDictionary*)globalProps resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    UIViewController *controller = [RCCViewController controllerWithLayout:layout globalProps:globalProps bridge:[[RCCManager sharedInstance] getBridge]];
+    UIViewController *controller = [RCCViewController controllerWithLayout:layout globalProps:globalProps bridge:[[RCCManager sharedInstance] getBridge] loadingView:nil];
     if (controller == nil)
     {
         [RCCManagerModule handleRCTPromiseRejectBlock:reject
