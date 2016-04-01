@@ -7,6 +7,7 @@
 @property (nonatomic, strong) NSMutableDictionary *modulesRegistry;
 @property (nonatomic, strong) RCTBridge *sharedBridge;
 @property (nonatomic, strong) NSURL *bundleURL;
+@property (nonatomic, weak) UIView *_loadingView;
 @end
 
 @implementation RCCManager
@@ -213,11 +214,17 @@
 
 -(void)setLoadingView:(UIView *)loadingView
 {
+  self._loadingView = loadingView;
   UIViewController *loadingController = [UIViewController new];
   loadingController.view = loadingView;
   id<UIApplicationDelegate> appDelegate = [UIApplication sharedApplication].delegate;
   appDelegate.window.rootViewController = loadingController;
   [appDelegate.window makeKeyAndVisible];
+}
+
+-(UIView *)getLoadingView
+{
+  return self._loadingView;
 }
 
 #pragma mark - RCTBridgeDelegate methods

@@ -13,7 +13,7 @@
 NSString const *CALLBACK_ASSOCIATED_KEY = @"RCCNavigationController.CALLBACK_ASSOCIATED_KEY";
 NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSOCIATED_ID";
 
-- (instancetype)initWithProps:(NSDictionary *)props children:(NSArray *)children globalProps:(NSDictionary*)globalProps bridge:(RCTBridge *)bridge
+- (instancetype)initWithProps:(NSDictionary *)props children:(NSArray *)children globalProps:(NSDictionary*)globalProps bridge:(RCTBridge *)bridge loadingView:(UIView *)loadingView
 {
   NSString *component = props[@"component"];
   if (!component) return nil;
@@ -21,7 +21,7 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
   NSDictionary *passProps = props[@"passProps"];
   NSDictionary *navigatorStyle = props[@"style"];
   
-  RCCViewController *viewController = [[RCCViewController alloc] initWithComponent:component passProps:passProps navigatorStyle:navigatorStyle globalProps:globalProps bridge:bridge];
+  RCCViewController *viewController = [[RCCViewController alloc] initWithComponent:component passProps:passProps navigatorStyle:navigatorStyle globalProps:globalProps bridge:bridge loadingView:loadingView];
   if (!viewController) return nil;
   
   NSString *title = props[@"title"];
@@ -83,7 +83,7 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
       navigatorStyle = mergedStyle;
     }
     
-    RCCViewController *viewController = [[RCCViewController alloc] initWithComponent:component passProps:passProps navigatorStyle:navigatorStyle globalProps:nil bridge:bridge];
+    RCCViewController *viewController = [[RCCViewController alloc] initWithComponent:component passProps:passProps navigatorStyle:navigatorStyle globalProps:nil bridge:bridge loadingView:nil];
     
     NSString *title = actionParams[@"title"];
     if (title) viewController.title = title;
@@ -156,7 +156,12 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
     NSDictionary *passProps = actionParams[@"passProps"];
     NSDictionary *navigatorStyle = actionParams[@"style"];
     
-    RCCViewController *viewController = [[RCCViewController alloc] initWithComponent:component passProps:passProps navigatorStyle:navigatorStyle globalProps:nil bridge:bridge];
+    UIView *loadingView;
+    if (navigatorStyle[@"showLoadingView"]) {
+      loadingView = [[RCCManager sharedIntance] getLoadingView];
+    }
+
+    RCCViewController *viewController = [[RCCViewController alloc] initWithComponent:component passProps:passProps navigatorStyle:navigatorStyle globalProps:nil bridge:bridge loadingView:loadingView];
     
     NSString *title = actionParams[@"title"];
     if (title) viewController.title = title;

@@ -72,7 +72,7 @@
     if (![tabItemLayout[@"children"] isKindOfClass:[NSArray class]]) continue;
     if ([tabItemLayout[@"children"] count] < 1) continue;
     NSDictionary *childLayout = tabItemLayout[@"children"][0];
-    UIViewController *viewController = [RCCViewController controllerWithLayout:childLayout globalProps:globalProps bridge:bridge];
+    UIViewController *viewController = [RCCViewController controllerWithLayout:childLayout globalProps:globalProps bridge:bridge loadingView:nil];
     if (!viewController) continue;
 
     // create the tab icon and title
