@@ -41,9 +41,10 @@ var MovieListScreen = React.createClass({
     });
   },
 
-  onShowLightBoxClick: function(backgroundBlur, backgroundColor = undefined) {
+  onShowLightBoxClick: function(backgroundBlur, backgroundColor = undefined, dismissOnTap = false) {
     Modal.showLightBox({
       component: 'LightBox',
+      dismissOnTap: dismissOnTap,
       style: {
         backgroundBlur: backgroundBlur,
         backgroundColor: backgroundColor
@@ -101,16 +102,20 @@ var MovieListScreen = React.createClass({
           Use the various options below to bring up modal screens:
         </Text>
 
-        <TouchableOpacity onPress={ this.onShowLightBoxClick.bind(this, "dark") }>
+        <TouchableOpacity onPress={ this.onShowLightBoxClick.bind(this, "dark", undefined, false) }>
           <Text style={styles.button}>LightBox (dark blur)</Text>
         </TouchableOpacity>
 
-	      <TouchableOpacity onPress={ this.onShowLightBoxClick.bind(this, "light") }>
+	      <TouchableOpacity onPress={ this.onShowLightBoxClick.bind(this, "light", undefined, false) }>
           <Text style={styles.button}>LightBox (light blur)</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={ this.onShowLightBoxClick.bind(this, "light", "rgba(66, 141, 200, 0.2)") }>
+        <TouchableOpacity onPress={ this.onShowLightBoxClick.bind(this, "light", "rgba(66, 141, 200, 0.2)", false) }>
           <Text style={styles.button}>LightBox (light blur + color overlay)</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={ this.onShowLightBoxClick.bind(this, "dark", undefined, true) }>
+          <Text style={styles.button}>LightBox (dismiss when clicking anywhere)</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={ this.onShowModalVcClick }>

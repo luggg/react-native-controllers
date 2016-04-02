@@ -56,8 +56,23 @@ const NSInteger kLightBoxTag = 0x101010;
         [self.reactView.contentView.layer addObserver:self forKeyPath:@"bounds" options:0 context:NULL];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onRNReload) name:RCTReloadNotification object:nil];
+
+        if ([params[@"dismissOnTap"] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+            UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+            [recognizer setNumberOfTapsRequired:1];
+            [[RCCLightBox getWindow] addGestureRecognizer:recognizer];
+        }
     }
     return self;
+}
+
+-(void)handleTap:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        [[RCCLightBox getWindow] removeGestureRecognizer:sender];
+        [RCCLightBox dismiss];
+    }
 }
 
 -(void)removeAllObservers
