@@ -181,8 +181,14 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
     }
     
     BOOL animated = actionParams[@"animated"] ? [actionParams[@"animated"] boolValue] : YES;
-    
-    [self setViewControllers:@[viewController] animated:animated];
+
+    if (animated) {
+      CATransition *transition = [self transitionWithType:kCATransitionReveal subtype:kCATransitionFade];
+      [self pushViewController:viewController withTransition:transition];
+    }
+    else {
+      [self setViewControllers:@[viewController] animated:animated];
+    }
     return;
   }
   
@@ -232,6 +238,22 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
     [self pushViewController:_controller animated:_animated];
     _controller = NULL;
   }
+}
+
+- (void)pushViewController:(UIViewController *)viewController withTransition:(CATransition *)transition {
+  [self.view.layer removeAllAnimations];
+  [self.view.layer addAnimation:transition forKey:nil];
+  [self setViewControllers:@[viewController] animated:NO];
+}
+
+- (CATransition *)transitionWithType:(NSString *)type subtype:(NSString *)subtype {
+  CATransition *transition = [CATransition animation];
+  transition.duration = 0.4f;
+  transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+  transition.type = type;
+  transition.subtype = subtype;
+  
+  return transition;
 }
 
 -(void)onButtonPress:(UIBarButtonItem*)barButtonItem
