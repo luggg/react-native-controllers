@@ -125,6 +125,7 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
   if (!self) return nil;
 
   if (loadingView) {
+    loadingView.hidden = NO;
     [reactView setLoadingView:loadingView];
   }
 
