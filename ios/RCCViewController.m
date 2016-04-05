@@ -100,6 +100,7 @@ const NSInteger BLUR_NAVBAR_TAG = 78264802;
   if (!self) return nil;
 
   if (loadingView) {
+    loadingView.hidden = NO;
     [reactView setLoadingView:loadingView];
   }
 
