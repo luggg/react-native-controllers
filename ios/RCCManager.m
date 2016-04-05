@@ -7,7 +7,7 @@
 @property (nonatomic, strong) NSMutableDictionary *modulesRegistry;
 @property (nonatomic, strong) RCTBridge *sharedBridge;
 @property (nonatomic, strong) NSURL *bundleURL;
-@property (nonatomic, weak) UIView *_loadingView;
+@property (nonatomic, strong) UIView *_loadingView;
 @end
 
 @implementation RCCManager
