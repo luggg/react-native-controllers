@@ -7,7 +7,7 @@
 @property (nonatomic, strong) NSMutableDictionary *modulesRegistry;
 @property (nonatomic, strong) RCTBridge *sharedBridge;
 @property (nonatomic, strong) NSURL *bundleURL;
-@property (nonatomic, strong) UIView *_loadingView;
+@property (nonatomic, strong) NSData *_serializedLoadingView;
 @end
 
 @implementation RCCManager
@@ -214,7 +214,7 @@
 
 -(void)setLoadingView:(UIView *)loadingView
 {
-  self._loadingView = loadingView;
+  self._serializedLoadingView = [NSKeyedArchiver archivedDataWithRootObject: loadingView];
   UIViewController *loadingController = [UIViewController new];
   loadingController.view = loadingView;
   id<UIApplicationDelegate> appDelegate = [UIApplication sharedApplication].delegate;
@@ -224,7 +224,7 @@
 
 -(UIView *)getLoadingView
 {
-  return self._loadingView;
+  return [NSKeyedUnarchiver unarchiveObjectWithData: self._serializedLoadingView];
 }
 
 #pragma mark - RCTBridgeDelegate methods
