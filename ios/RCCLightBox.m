@@ -104,7 +104,11 @@ const NSInteger kLightBoxTag = 0x101010;
     
     if (!CGSizeEqualToSize(frameSize, self.reactView.frame.size))
     {
-        self.reactView.frame = CGRectMake((self.frame.size.width - frameSize.width) * 0.5, (self.frame.size.height - frameSize.height) * 0.5, frameSize.width, frameSize.height);
+        double offset = 0;
+        if (self.params != nil && self.params[@"style"] != nil) {
+            offset = [[self.params valueForKeyPath:@"style.offset"] doubleValue];
+        }
+        self.reactView.frame = CGRectMake((self.frame.size.width - frameSize.width) * 0.5, (self.frame.size.height - frameSize.height) * 0.5 + offset, frameSize.width, frameSize.height);
     }
 }
 
