@@ -22,18 +22,18 @@ const NSInteger kLightBoxTag = 0x101010;
     if (self)
     {
         self.params = params;
-        
+
         NSDictionary *style = self.params[@"style"];
         if (self.params != nil && style != nil)
         {
-            
+
             if (style[@"backgroundBlur"] != nil && ![style[@"backgroundBlur"] isEqualToString:@"none"])
             {
                 self.visualEffectView = [[UIVisualEffectView alloc] init];
                 self.visualEffectView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
                 [self addSubview:self.visualEffectView];
             }
-            
+
             if (style[@"backgroundColor"] != nil)
             {
                 UIColor *backgroundColor = [RCTConvert UIColor:style[@"backgroundColor"]];
@@ -46,15 +46,16 @@ const NSInteger kLightBoxTag = 0x101010;
                 }
             }
         }
-        
+
         self.reactView = [[RCTRootView alloc] initWithBridge:[[RCCManager sharedIntance] getBridge] moduleName:self.params[@"component"] initialProperties:self.params[@"passProps"]];
         self.reactView.sizeFlexibility = RCTRootViewSizeFlexibilityWidthAndHeight;
         self.reactView.center = self.center;
+        self.reactView.backgroundColor = UIColor.clearColor;
         [self addSubview:self.reactView];
-        
+
         [self.reactView.contentView.layer addObserver:self forKeyPath:@"frame" options:0 context:nil];
         [self.reactView.contentView.layer addObserver:self forKeyPath:@"bounds" options:0 context:NULL];
-        
+
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onRNReload) name:RCTReloadNotification object:nil];
 
         if ([params[@"dismissOnTap"] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
@@ -101,7 +102,7 @@ const NSInteger kLightBoxTag = 0x101010;
         frameSize = ((CALayer*)object).frame.size;
     if ([object isKindOfClass:[UIView class]])
         frameSize = ((UIView*)object).frame.size;
-    
+
     if (!CGSizeEqualToSize(frameSize, self.reactView.frame.size))
     {
         double offset = 0;
@@ -120,7 +121,7 @@ const NSInteger kLightBoxTag = 0x101010;
     {
         return nil;
     }
-    
+
     UIBlurEffectStyle blurEffectStyle = UIBlurEffectStyleDark;
     if ([backgroundBlur isEqualToString:@"light"])
         blurEffectStyle = UIBlurEffectStyleLight;
@@ -141,14 +142,14 @@ const NSInteger kLightBoxTag = 0x101010;
              {
                  self.visualEffectView.effect = [self blurEfectForCurrentStyle];
              }
-             
+
              if (self.overlayColorView != nil)
              {
                  self.overlayColorView.alpha = 1;
              }
          }];
     }
-    
+
     self.reactView.transform = CGAffineTransformMakeTranslation(0, 100);
     self.reactView.alpha = 0;
     [UIView animateWithDuration:0.6 delay:0.2 usingSpringWithDamping:0.65 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseOut animations:^()
@@ -161,7 +162,7 @@ const NSInteger kLightBoxTag = 0x101010;
 -(void)dismissAnimated
 {
     BOOL hasOverlayViews = (self.visualEffectView != nil || self.overlayColorView != nil);
-    
+
     [UIView animateWithDuration:0.2 animations:^()
     {
         self.reactView.transform = CGAffineTransformMakeTranslation(0, 80);
@@ -174,7 +175,7 @@ const NSInteger kLightBoxTag = 0x101010;
             [self removeFromSuperview];
         }
     }];
-    
+
     if (hasOverlayViews)
     {
         [UIView animateWithDuration:0.25 delay:0.15 options:UIViewAnimationOptionCurveEaseOut animations:^()
@@ -183,12 +184,12 @@ const NSInteger kLightBoxTag = 0x101010;
              {
                  self.visualEffectView.effect = nil;
              }
-             
+
              if (self.overlayColorView != nil)
              {
                  self.overlayColorView.alpha = 0;
              }
-             
+
          } completion:^(BOOL finished)
          {
              [self removeFromSuperview];
@@ -214,7 +215,7 @@ const NSInteger kLightBoxTag = 0x101010;
     {
         return;
     }
-    
+
     RCCLightBoxView *lightBox = [[RCCLightBoxView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) params:params];
     lightBox.tag = kLightBoxTag;
     [window addSubview:lightBox];
