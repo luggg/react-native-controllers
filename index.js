@@ -138,6 +138,9 @@ var Controllers = {
           var unsubscribe = _processButtons(params['rightButtons']);
           unsubscribes.push(unsubscribe);
         }
+        if (params['titleImage']) {
+          params['titleImage'] = resolveAssetSource(params['titleImage']);
+        }
         RCCManager.NavigationControllerIOS(id, "resetTo", params);
         return function() {
           for (var i = 0 ; i < unsubscribes.length ; i++) {

@@ -27,6 +27,8 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
   NSString *title = props[@"title"];
   if (title) viewController.title = title;
   
+  [self setTitleImageForVC:viewController titleImageData:props[@"titleImage"]];
+  
   NSArray *leftButtons = props[@"leftButtons"];
   if (leftButtons)
   {
@@ -85,6 +87,8 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
     
     NSString *title = actionParams[@"title"];
     if (title) viewController.title = title;
+    
+    [self setTitleImageForVC:viewController titleImageData:actionParams[@"titleImage"]];
     
     NSString *backButtonTitle = actionParams[@"backButtonTitle"];
     if (backButtonTitle)
@@ -155,6 +159,8 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
     NSString *title = actionParams[@"title"];
     if (title) viewController.title = title;
     
+    [self setTitleImageForVC:viewController titleImageData:actionParams[@"titleImage"]];
+    
     NSArray *leftButtons = actionParams[@"leftButtons"];
     if (leftButtons)
     {
@@ -195,6 +201,12 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
   {
     NSString *title = actionParams[@"title"];
     if (title) self.topViewController.title = title;
+    return;
+  }
+  
+  if ([performAction isEqualToString:@"setTitleImage"])
+  {
+    [self setTitleImageForVC:self.topViewController titleImageData:actionParams[@"titleImage"]];
     return;
   }
 }
@@ -283,6 +295,19 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
   if ([side isEqualToString:@"right"])
   {
     [viewController.navigationItem setRightBarButtonItems:barButtonItems animated:animated];
+  }
+}
+
+- (void)setTitleImageForVC:(UIViewController *)viewController titleImageData:(id)titleImageData
+{
+  if (!titleImageData) {
+    viewController.navigationItem.titleView = nil;
+    return;
+  }
+  
+  UIImage *titleImage = [RCTConvert UIImage:titleImageData];
+  if (titleImage) {
+    viewController.navigationItem.titleView = [[UIImageView alloc] initWithImage:titleImage];
   }
 }
 
