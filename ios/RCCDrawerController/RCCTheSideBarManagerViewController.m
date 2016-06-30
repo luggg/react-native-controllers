@@ -43,20 +43,20 @@
     
     if ([children count] < 1) return nil;
     
-    UIViewController *centerVC = [RCCViewController controllerWithLayout:children[0] globalProps:props bridge:bridge];
+    UIViewController *centerVC = [RCCViewController controllerWithLayout:children[0] globalProps:props bridge:bridge loadingView:nil];
     UIViewController *leftVC = nil;
     UIViewController *rightVC = nil;
     
     // left
     NSString *componentLeft = props[@"componentLeft"];
     if (componentLeft)  {
-        leftVC = [[RCCViewController alloc] initWithComponent:componentLeft passProps:props[@"passPropsLeft"] navigatorStyle:nil globalProps:props bridge:bridge];
+        leftVC = [[RCCViewController alloc] initWithComponent:componentLeft passProps:props[@"passPropsLeft"] navigatorStyle:nil globalProps:props bridge:bridge loadingView:nil];
     }
     
     // right
     NSString *componentRight = props[@"componentRight"];
     if (componentRight) {
-        rightVC = [[RCCViewController alloc] initWithComponent:componentRight passProps:props[@"passPropsRight"] navigatorStyle:nil globalProps:props bridge:bridge];
+        rightVC = [[RCCViewController alloc] initWithComponent:componentRight passProps:props[@"passPropsRight"] navigatorStyle:nil globalProps:props bridge:bridge loadingView:nil];
     }
     
     self = [super initWithContentViewController:centerVC
