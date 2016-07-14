@@ -11,7 +11,7 @@
 -(void)initBridgeWithBundleURL:(NSURL *)bundleURL launchOptions:(NSDictionary *)launchOptions;
 -(RCTBridge*)getBridge;
 -(UIWindow*)getAppWindow;
--(void)setLoadingView:(UIView *)loadingView;
+-(void)setLoadingView:(UIView *)loadingView activate:(BOOL)activate;
 -(UIView *)getLoadingView;
 
 -(void)registerController:(UIViewController*)controller componentId:(NSString*)componentId componentType:(NSString*)componentType;

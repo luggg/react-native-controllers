@@ -212,14 +212,16 @@
   return window;
 }
 
--(void)setLoadingView:(UIView *)loadingView
+-(void)setLoadingView:(UIView *)loadingView activate:(BOOL)activate
 {
   self._serializedLoadingView = [NSKeyedArchiver archivedDataWithRootObject: loadingView];
-  UIViewController *loadingController = [UIViewController new];
-  loadingController.view = loadingView;
-  id<UIApplicationDelegate> appDelegate = [UIApplication sharedApplication].delegate;
-  appDelegate.window.rootViewController = loadingController;
-  [appDelegate.window makeKeyAndVisible];
+  if (activate) {
+    UIViewController *loadingController = [UIViewController new];
+    loadingController.view = loadingView;
+    id<UIApplicationDelegate> appDelegate = [UIApplication sharedApplication].delegate;
+    appDelegate.window.rootViewController = loadingController;
+    [appDelegate.window makeKeyAndVisible];
+  }
 }
 
 -(UIView *)getLoadingView
