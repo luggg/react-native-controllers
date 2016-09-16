@@ -7,6 +7,7 @@
 #import "RCCManager.h"
 #import "RCTConvert.h"
 #import "RCCExternalViewControllerProtocol.h"
+#import "RCTFont.h"
 
 NSString* const RCCViewControllerCancelReactTouchesNotification = @"RCCViewControllerCancelReactTouchesNotification";
 
@@ -220,12 +221,13 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
     UIColor *navBarTextConvertedColor = navBarTextColor != (id)[NSNull null] ? [RCTConvert UIColor:navBarTextColor] : nil;
     [titleTextAttributes setValue:navBarTextConvertedColor forKey:NSForegroundColorAttributeName];
 
-    UIFont *titleTextFont = [RCTConvert UIFont:nil
-                                    withFamily:navBarTextFontFamily
-                                          size:navBarTextFontSize
-                                        weight:navBarTextFontWeight
-                                         style:navBarTextFontStyle
-                               scaleMultiplier:1.0f];
+    UIFont *titleTextFont = [RCTFont updateFont:nil
+                                     withFamily:navBarTextFontFamily
+                                           size:navBarTextFontSize
+                                         weight:navBarTextFontWeight
+                                          style:navBarTextFontStyle
+                                        variant:nil
+                                scaleMultiplier:1.0];
 
     [titleTextAttributes setValue:titleTextFont forKey:NSFontAttributeName];
 
