@@ -49,6 +49,17 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
   return self;
 }
 
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
+  
+  __weak RCCNavigationController *weakSelf = self;
+  if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)])
+  {
+    self.delegate = weakSelf;
+  }
+}
+
 - (void)performAction:(NSString*)performAction actionParams:(NSDictionary*)actionParams bridge:(RCTBridge *)bridge
 {
   BOOL animated = actionParams[@"animated"] ? [actionParams[@"animated"] boolValue] : YES;
@@ -235,6 +246,10 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
 -(void)changeControllers
 {
   if (_controller) {
+    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)])
+    {
+      self.interactivePopGestureRecognizer.enabled = NO;
+    }
     [self pushViewController:_controller animated:_animated];
     _controller = NULL;
   }
@@ -339,6 +354,23 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
   if (titleImage)
   {
     viewController.navigationItem.titleView = [[UIImageView alloc] initWithImage:titleImage];
+  }
+}
+
+#pragma mark UINavigationControllerDelegate
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+  if (viewController == self.viewControllers.firstObject)
+  {
+    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)])
+    {
+      self.interactivePopGestureRecognizer.enabled = NO;
+    }
+  }
+  else
+  {
+    self.interactivePopGestureRecognizer.enabled = YES;
   }
 }
 
