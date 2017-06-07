@@ -6,6 +6,7 @@
 #import "RCTRootView.h"
 #import "RCCManager.h"
 #import "RCTConvert.h"
+#import "RCTFont.h"
 #import "RCCExternalViewControllerProtocol.h"
 
 const NSInteger BLUR_STATUS_TAG = 78264801;
@@ -210,12 +211,13 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
     UIColor *navBarTextConvertedColor = navBarTextColor != (id)[NSNull null] ? [RCTConvert UIColor:navBarTextColor] : nil;
     [titleTextAttributes setValue:navBarTextConvertedColor forKey:NSForegroundColorAttributeName];
 
-    UIFont *titleTextFont = [RCTConvert UIFont:nil
-                                    withFamily:navBarTextFontFamily
-                                          size:navBarTextFontSize
-                                        weight:navBarTextFontWeight
-                                         style:navBarTextFontStyle
-                               scaleMultiplier:1.0f];
+    UIFont *titleTextFont = [RCTFont updateFont:nil
+                                     withFamily:navBarTextFontFamily
+                                           size:navBarTextFontSize
+                                         weight:navBarTextFontWeight
+                                          style:navBarTextFontStyle
+                                        variant:nil
+                                scaleMultiplier:1.0f];
 
     [titleTextAttributes setValue:titleTextFont forKey:NSFontAttributeName];
 
